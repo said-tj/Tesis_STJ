@@ -1,0 +1,77 @@
+\chapter{Objeto de la investigación}
+\markboth{CAPÍTULO 1. OBJETO DE LA INVESTIGACIÓN}{\small CAPÍTULO 1. OBJETO DE LA INVESTIGACIÓN}
+\label{ObjetoInv}
+ 
+\parskip=12pt
+\section{Planteamiento del problema}\label{Seccion11}
+\noindent La resolución de sistemas de ecuaciones lineales constituye un componente fundamental en el estudio del álgebra lineal, con aplicaciones esenciales en campos como la ingeniería, la física, la estadística y las ciencias computacionales. Entre los métodos más eficientes y ampliamente utilizados para resolver estos sistemas destacan las técnicas de factorización matricial, específicamente $\mathrm{LU}$, $\mathrm{LL^T}$ (Cholesky) y $\mathrm{LDL^T}$. Estas técnicas permiten descomponer matrices complejas en productos matriciales más simples, lo que facilita el cálculo, la manipulación algebraica y la interpretación de los sistemas.
+
+\noindent No obstante, la enseñanza y el aprendizaje de estos métodos presentan desafíos significativos en los niveles medio superior y superior. Los estudiantes no solo deben internalizar algoritmos complejos, sino también comprender la abstracción que implica la notación matricial y la lógica algebraica subyacente a cada procedimiento. En muchos contextos académicos, la instrucción se limita a exposiciones teóricas acompañadas de ejercicios manuales, predominando un enfoque estático y poco interactivo que dificulta la conexión entre teoría y práctica.
+
+Pese al creciente uso de tecnologías educativas en diversas áreas, se observa una notable carencia de herramientas digitales especializadas en la enseñanza interactiva de la factorización matricial. La mayoría de los recursos disponibles se centran en resolver sistemas lineales de manera automática o en aspectos algebraicos más generales, sin ofrecer una experiencia que permita visualizar detalladamente las matrices $\mathrm{L}$, $\mathrm{U}$ y $\mathrm{D}$, ni la posibilidad de manipular libremente los datos o validar paso a paso los resultados intermedios, aspectos fundamentales para consolidar el aprendizaje.
+
+\parskip=15pt
+\noindent Esta deficiencia afecta la comprensión conceptual de los estudiantes, quienes frecuentemente desconocen cómo se construyen las matrices de descomposición, cómo validar la factorización y cómo aplicar estos procesos para resolver eficazmente el sistema original. Por ello, resulta imperativo desarrollar un recurso digital que permita la interacción activa con los procedimientos, la exploración guiada y la retroalimentación inmediata, elementos que favorecen la motivación, el razonamiento crítico y la adquisición de un conocimiento profundo y duradero.
+
+\noindent En consecuencia, el diseño de un programa con una interfaz clara, amigable e intuitiva que guíe al estudiante durante todas las etapas de la factorización matricial se perfila como una solución educativa viable. Esta herramienta deberá incluir funcionalidades para la validación manual de resultados intermedios, la representación explícita de las transformaciones matriciales y la experimentación con distintos conjuntos de datos, fomentando así un aprendizaje constructivo, significativo y adaptado a las necesidades y ritmos individuales.
+
+\section{Justificación}
+
+\noindent En el contexto actual de la educación matemática, se reconoce el papel fundamental que desempeñan los recursos digitales interactivos para facilitar la enseñanza y el aprendizaje de conceptos complejos y abstractos. El álgebra lineal, por su naturaleza, puede beneficiarse significativamente de software educativo que combine elementos visuales, interactividad y retroalimentación inmediata, características que fomentan un aprendizaje activo, la autonomía del estudiante y el desarrollo de habilidades analíticas y metacognitivas.
+
+El presente proyecto propone el desarrollo de un programa interactivo, implementado en Python con bibliotecas gráficas como Tkinter o PyQt, que facilite el aprendizaje de los métodos de factorización $\mathrm{LU}$, $\mathrm{LL^T}$ y $\mathrm{LDL^T}$. Esta aplicación permitirá a los usuarios introducir sistemas personalizados, seguir detalladamente cada etapa de la factorización, visualizar las matrices generadas y validar manualmente los resultados, recibiendo retroalimentación automática y didáctica que corrija errores y refuerce conceptos clave.
+
+\noindent Con esta propuesta se pretende abordar una necesidad educativa específica: superar la memorización mecánica de algoritmos para alcanzar una comprensión profunda y lógica de los procesos matriciales. Un entorno interactivo que fomente la experimentación y la autoverificación contribuye al desarrollo de competencias críticas, como la interpretación precisa de resultados, la toma de decisiones fundamentadas y el pensamiento estructurado.
+
+\noindent Además, el diseño flexible y accesible del programa lo hace adecuado tanto para entornos presenciales como virtuales, pudiendo utilizarse como apoyo didáctico en clases o como herramienta para el autoaprendizaje. La elección de un lenguaje de programación abierto garantiza que el recurso sea gratuito, modificable y adaptable, lo que favorece la democratización del acceso a materiales educativos especializados y la mejora continua basada en la retroalimentación de estudiantes y docentes.
+
+\noindent En síntesis, este proyecto constituye una contribución relevante a la innovación pedagógica en la enseñanza del álgebra lineal, integrando tecnología, interactividad y fundamentos didácticos. Se espera que esta iniciativa fortalezca la comprensión conceptual, incremente la motivación y mejore el rendimiento académico en un área fundamental del currículo matemático.
+
+\section{Objetivos}
+
+\subsection{Objetivo general}
+
+\noindent Desarrollar un programa con interfaz interactiva que facilite de manera integral la enseñanza y el aprendizaje de la resolución de sistemas de ecuaciones lineales mediante métodos de factorización matricial $\mathrm{LU}$, $\mathrm{LL^T}$ (Cholesky) y $\mathrm{LDL^T}$. Este programa ofrecerá una guía estructurada, clara y paso a paso para el estudiante, incorporando validaciones automatizadas y retroalimentación continua que fortalezcan la comprensión tanto conceptual como práctica de los métodos. De esta forma, se fomentará un aprendizaje activo, significativo y autónomo, que desarrolle la capacidad de razonamiento matemático.
+
+\subsection{Objetivos específicos}
+
+\begin{itemize}
+	\item Diseñar una interfaz gráfica intuitiva y accesible que permita a los usuarios ingresar matrices y vectores de manera sencilla, flexible y segura, facilitando la exploración, manipulación y experimentación con diferentes conjuntos de datos. La interfaz deberá incluir visualizaciones dinámicas y didácticas de las matrices resultantes $\mathrm{L}$, $\mathrm{U}$ y $\mathrm{D}$, así como de las etapas intermedias del proceso, con el fin de promover una comprensión profunda y visual del algoritmo.
+	
+	\item Implementar eficientemente los algoritmos de factorización $\mathrm{LU}$, Cholesky ($\mathrm{LL^T}$) y $\mathrm{LDL^T}$, asegurando el manejo correcto de matrices compatibles en dimensiones y propiedades algebraicas (como simetría, definida positiva y no singularidad). El programa incorporará validaciones internas rigurosas para prevenir errores numéricos comunes, garantizar estabilidad computacional y manejar adecuadamente casos especiales.
+	
+	\item Incorporar un sistema integral de retroalimentación automatizada y validación manual que permita al estudiante verificar sus cálculos en cada fase del proceso, detectar posibles errores o inconsistencias, y recibir sugerencias didácticas personalizadas que faciliten la corrección, la reflexión y el reforzamiento del aprendizaje autónomo y metacognitivo.
+	
+	\item Evaluar el impacto educativo del software mediante pruebas piloto con estudiantes de nivel superior, empleando instrumentos cuantitativos (pruebas de comprensión, evaluaciones de desempeño) y cualitativos (encuestas de opinión, entrevistas) para medir mejoras en la comprensión conceptual, retención de conocimientos, actitud hacia el aprendizaje y usabilidad del programa. Los resultados permitirán ajustar y optimizar la herramienta según las necesidades reales de los usuarios finales.
+	
+	\item Elaborar un manual que incluya guías detalladas de uso, ejemplos prácticos contextualizados para facilitar la integración efectiva del programa en los planes de estudio. Este material apoyará tanto a docentes que deseen incorporar la herramienta en su práctica educativa, como a estudiantes que utilicen el software de forma autónoma o en modalidades de autoaprendizaje.
+\end{itemize}
+
+\section{Hipótesis y preguntas de investigación}
+
+\subsection{Hipótesis}
+
+\noindent La implementación y uso de un programa interactivo diseñado para guiar la resolución de sistemas de ecuaciones lineales mediante factorización matricial ($\mathrm{LU}$, $\mathrm{LL^T}$, $\mathrm{LDL^T}$) mejora significativamente la comprensión conceptual, el aprendizaje activo y la retención a largo plazo de los conceptos matemáticos involucrados. Esta mejora se refleja en un mejor desempeño académico y una mayor motivación hacia el estudio del álgebra lineal, en comparación con metodologías tradicionales basadas exclusivamente en exposiciones teóricas y resolución de ejercicios estáticos sin apoyo tecnológico.
+
+\subsection{Preguntas de investigación}
+
+\begin{enumerate}
+	\item ¿Qué características de la interfaz gráfica contribuyen de manera más efectiva a facilitar el aprendizaje y la comprensión de los métodos de factorización matricial?
+	
+	Esta pregunta busca identificar qué elementos visuales (por ejemplo: colores, diagramas), funcionalidades interactivas (validación inmediata, manipulación directa de matrices) y niveles de complejidad favorecen la experiencia educativa y la apropiación del conocimiento por parte de los estudiantes.
+	
+	\item ¿Cómo influye la retroalimentación automatizada y la validación manual en el proceso de aprendizaje de los estudiantes?
+	
+	Se pretende analizar si el feedback inmediato sobre errores o aciertos estimula la reflexión crítica, la autoevaluación, la motivación para corregir errores y la profundización en los conceptos, favoreciendo un aprendizaje autónomo, significativo y perdurable.
+	
+	\item ¿Cuál es el impacto real del uso del software en los niveles de comprensión y desempeño académico de los estudiantes en álgebra lineal?
+	
+	Esta interrogante está orientada a medir, mediante evaluaciones diagnósticas y sumativas, así como encuestas y entrevistas, la efectividad del programa como recurso educativo en comparación con métodos tradicionales de enseñanza.
+	
+	\item ¿En qué contextos educativos (presencial, semipresencial, a distancia) resulta más efectiva la integración del programa para el aprendizaje de la factorización matricial?
+	
+	Se busca determinar las condiciones y modalidades de enseñanza en las que la herramienta tecnológica aporta mayores beneficios pedagógicos, identificando limitaciones y potencialidades según el entorno educativo, la infraestructura tecnológica disponible y el perfil de los estudiantes.
+\end{enumerate}
+
+\goodbreak
+
