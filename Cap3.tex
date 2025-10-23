@@ -1,29 +1,150 @@
-\chapter{Nombre del Capítulo 3 (Metodología)}
-\markboth{CAPÍTULO 3: NOMBRE DEL CAPÍTULO 3}{\small CAPÍTULO 3: NOMBRE DEL CAPÍTULO 3}
+\chapter{Metodología}
+\markboth{Metología}{\small Metodología}
 \label{Metodologia}
 
-\noindent En este capítulo...
+\section{Enfoque general de la investigación}
+La presente investigación adopta un enfoque mixto de carácter experimental y computacional, sustentado en la integración de procedimientos de registro neurofisiológico y procesamiento matemático de señales mediante herramientas de programación científica en Python. Su desarrollo se orienta a la construcción de un marco computacional reproducible que permita el análisis cuantitativo de bioseñales electromiográficas del esfínter externo de la uretra (EEU) en conejas, registradas bajo condiciones experimentales controladas.
+
+El proceso metodológico se estructura en cuatro fases principales:
+
+\begin{enumerate}
+	\item Adquisición y preparación de datos experimentales
+	\item Procesamiento y transformación espectral de las señales
+	\item Desarrollo del marco computacional en Python
+	\item Validación y análisis estadístico de los resultados
+\end{enumerate}
+
+Cada fase se sustenta en principios teóricos rigurosos y en la aplicación de técnicas cuantitativas orientadas a garantizar la reproducibilidad y precisión del análisis.
+
+\section{Adquisición y preparación de los datos}
+\subsection{Contexto experimental}
+Los datos empleados en esta investigación provienen de registros electromiográficos obtenidos en el Centro Tlaxcala de Biología de la Conducta (CTBC), bajo la dirección de la Dra. Dora Luz Corona Quintanilla (véase [Corona-Quintanilla et al., año]).
+
+El modelo experimental consiste en la estimulación eléctrica controlada de tres regiones anatómicas de la uretra —proximal, medial y distal— en conejas adultas. Cada región es sometida a trenes de estímulos triplicados de cinco minutos de duración, dentro de los cuales se establecen cuatro ventanas de análisis temporal de quince segundos:
+
+\begin{itemize}
+	\item Basal (antes de la estimulación)
+	\item A-inicial (inicio de la respuesta)
+	\item A-mayor (máximo de activación)
+	\item A-final (fase de retorno o adaptación)
+\end{itemize}
+
+Los registros, correspondientes a la Presión Uretral (PU) y a la actividad electromiográfica (EMG), se almacenan en archivos binarios con extensión .BIN, los cuales contienen la información digitalizada de las señales fisiológicas capturadas durante la experimentación.
+
+\subsection{Preparación y estructuración de los datos}
+Para garantizar la trazabilidad de los registros, se implementará una rutina en Python que permita:
+
+\begin{itemize}
+	\item La lectura automatizada de los archivos .BIN y su conversión a estructuras manipulables mediante NumPy y Pandas.
+	\item La normalización de las señales para homogenizar unidades y magnitudes.
+	\item La segmentación de los datos de acuerdo con las ventanas temporales definidas experimentalmente.
+	\item El etiquetado sistemático de cada archivo con información referente a la región anatómica, número de réplica y condición experimental.
+\end{itemize}
+
+De esta manera, se garantiza que las señales procesadas mantengan coherencia interna y correspondencia directa con el contexto experimental en el cual fueron adquiridas.
+
+\section{Procesamiento y análisis espectral de las bioseñales}
+\subsection{Transformación espectral mediante FFT}
+
+El procesamiento de las señales se efectuará aplicando la Transformada Rápida de Fourier (FFT), técnica que permite descomponer la señal temporal en sus componentes frecuenciales.
+Para optimizar la resolución espectral y minimizar los efectos de fuga (spectral leakage), la FFT será parametrizada conforme a los siguientes criterios:
+
+\begin{itemize}
+	\item Función de ventana: Ventana de Hamming, seleccionada por su adecuada relación entre atenuación lateral y preservación de amplitud.
+	\item Unidades de visualización: Voltaje pico por raíz de Hertz (Vpk/rHz), lo que posibilita una normalización consistente entre registros.
+	\item Ancho de bin: 15 unidades frecuenciales, definido con base en la frecuencia de muestreo de los datos y en la resolución requerida para el análisis comparativo.
+\end{itemize}
+
+El resultado del proceso será un conjunto de bins espectrales, correspondientes a los niveles de energía y amplitud de las distintas frecuencias presentes en la señal. Estos valores constituirán la base cuantitativa para el análisis estadístico posterior.
+
+\subsection{Filtrado y depuración de las señales}
+
+Previo a la aplicación de la FFT, las señales serán sometidas a un proceso de filtrado digital con el objetivo de eliminar componentes espurias y ruido de alta frecuencia no asociado a la actividad neuromuscular. Se utilizarán filtros pasa-bajo y pasa-alto implementados mediante funciones de la biblioteca SciPy.signal, ajustados de acuerdo con la frecuencia de muestreo del sistema experimental.
+
+\subsection{Almacenamiento y trazabilidad de resultados}
+Los resultados espectrales serán almacenados en estructuras DataFrame de Pandas, vinculadas a metadatos experimentales que aseguren la trazabilidad de cada análisis. De este modo, se mantiene la integridad de la información a lo largo de todas las etapas del procesamiento.
+
+\section{Desarrollo del marco computacional en Python}
+
+\subsection{Arquitectura del sistema}
+
+El marco computacional se desarrollará bajo una arquitectura modular, conformada por los siguientes componentes:
+
+\begin{itemize}
+	\item Módulo de adquisición y lectura de datos: encargado de la importación y estructuración de los archivos .BIN.
+	\item Módulo de procesamiento espectral: implementa la FFT y las rutinas de filtrado y normalización.
+	\item Módulo de análisis estadístico: calcula medidas descriptivas y comparativas entre regiones anatómicas y ventanas temporales.
+	\item Módulo de visualización: genera representaciones gráficas y espectrogramas interactivos mediante Matplotlib y Seaborn.
+\end{itemize}
+
+\subsection{Modalidades de implementación}
+
+El sistema se diseñará en dos modalidades complementarias:
+
+\begin{enumerate}
+	\item Interfaz de Línea de Comandos (CLI): orientada al análisis automatizado de grandes volúmenes de datos, permitiendo ejecutar los procedimientos de manera secuencial y eficiente.
+	\item Cuaderno interactivo (Jupyter Notebook): destinado a la exploración visual, la documentación metodológica y la replicabilidad académica de los resultados.
+\end{enumerate}
+
+Ambas modalidades compartirán la misma base de código y estructura modular, facilitando la escalabilidad y adaptabilidad del sistema a distintos tipos de bioseñales.
+
+\section{Análisis estadístico y validación de resultados}
+
+\subsection{Evaluación estadística de los bins espectrales}
+
+Los valores espectrales obtenidos se someterán a un análisis estadístico descriptivo e inferencial, con el fin de identificar diferencias significativas entre las regiones uretrales (proximal, medial y distal) y entre las distintas ventanas de análisis temporal.
+
+Dependiendo de la distribución de los datos, se aplicarán pruebas como:
+
+\begin{itemize}
+	\item ANOVA de una vía o Kruskal–Wallis, para la comparación entre grupos.
+	\item Pruebas post-hoc (Tukey o Dunn) para determinar contrastes específicos.
+	\item Medidas de dispersión y correlación, orientadas a establecer relaciones entre componentes frecuenciales y respuestas fisiológicas.
+\end{itemize}
+
+\subsection{Validación del marco computacional}
+El desempeño del sistema será validado mediante dos criterios fundamentales:
+
+\begin{enumerate}
+	\item Comparación con resultados previos obtenidos en estudios experimentales del CTBC (véase [Corona-Quintanilla et al., año]), evaluando la coherencia entre los patrones espectrales reportados y los obtenidos mediante el software propuesto.
+	\item Contrastación con software especializado, verificando que los resultados del análisis espectral y estadístico sean equivalentes o mejorados en términos de precisión, resolución y reproducibilidad.
+\end{enumerate}
+
+\subsection{Documentación y reproducibilidad}
+
+Cada etapa del procesamiento será documentada exhaustivamente dentro del entorno Jupyter, incluyendo los códigos fuente, parámetros utilizados y descripciones metodológicas. Esta documentación permitirá que otros investigadores repliquen o amplíen los resultados, fortaleciendo los principios de ciencia abierta y trazabilidad científica.
+
+\subsection{Consideraciones éticas y científicas}
+
+La presente investigación se realiza sobre datos experimentales previamente registrados bajo protocolos aprobados por los comités de ética del Centro Tlaxcala de Biología de la Conducta. No se realiza manipulación directa de animales, sino análisis secundario de datos, por lo que el estudio cumple con los principios éticos de respeto, confidencialidad y uso responsable de la información científica.
+
+\subsection{Síntesis del proceso metodológico}
+
+En síntesis, la metodología propuesta articula el rigor experimental con la precisión matemática y la eficiencia computacional. A través de la integración de técnicas de análisis espectral, estadística inferencial y desarrollo de software en Python, esta investigación pretende construir un marco analítico sólido, reproducible y escalable, capaz de contribuir significativamente al estudio de las bioseñales electromiográficas uretrales y, por extensión, a la comprensión de los procesos neuromusculares que regulan la función miccional.
+
+El resultado esperado es un sistema computacional abierto que no solo optimice el tratamiento de señales biomédicas, sino que también se erija como una herramienta de apoyo científico para futuras investigaciones en el campo de la neurofisiología experimental y la matemática aplicada.
+%\noindent En este capítulo...
 
 %------------------------------------------------------------------------------------------------------------
-\section{Nombre de la Sección} \label{EtiquetaDeSeccion31}
-\noindent Texto...
+%\section{Nombre de la Sección} \label{EtiquetaDeSeccion31}
+%\noindent Texto...
 
-\begin{table}[h!]
-\caption{Algunas funciones complejas }
-\centering
-\begin{tabular}{ll|r}
-	&\textbf{$w=f(z)$}&\textbf{Región en que $w$ está definida}\\
-	\cline{2-3}
-	a)&$\displaystyle w=2z$&Todo el plano\\
-	\cline{2-3}
-	b)&$\displaystyle w=e^{|z|}$&Todo el plano\\
-	\cline{2-3}
-	c)&$\displaystyle w=2i|z|^2$&Todo el plano\\
-	\cline{2-3}
-	d)&$\displaystyle w=\frac{z+3i}{z^2+9}$ &Todo el plano excepto $\pm 3i$
-\end{tabular}
-\label{EtiquetaDeLaTabla2}
-\medskip
-\caption*{\small  \emph{Nota}: Tabla extraída de \citet[p. 50]{WunschKEY}.}
-\end{table}
+%\begin{table}[h!]
+%\caption{Algunas funciones complejas }
+%\centering
+%\begin{tabular}{ll|r}
+%	&\textbf{$w=f(z)$}&\textbf{Región en que $w$ está definida}\\
+%	\cline{2-3}
+%	a)&$\displaystyle w=2z$&Todo el plano\\
+%	\cline{2-3}
+%	b)&$\displaystyle w=e^{|z|}$&Todo el plano\\
+%	\cline{2-3}
+%	c)&$\displaystyle w=2i|z|^2$&Todo el plano\\
+%	\cline{2-3}
+%	d)&$\displaystyle w=\frac{z+3i}{z^2+9}$ &Todo el plano excepto $\pm 3i$
+%\end{tabular}
+%\label{EtiquetaDeLaTabla2}
+%\medskip
+%\caption*{\small  \emph{Nota}: Tabla extraída de \citet[p. 50]{WunschKEY}.}
+%\end{table}
 
